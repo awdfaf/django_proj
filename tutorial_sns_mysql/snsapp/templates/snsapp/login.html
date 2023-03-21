@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Login</title>
+</head>
+<body>
+    {% load static %}
+    {% load socialaccount %}
+    {% providers_media_js %}
+
+    <h1>SNS Login :: Google</h1>
+    <!-- sns 로그인이 되어 있는지 확인 -->
+    {% if user.is_authenticated %}
+        <a href="/accounts/logout/">로그아웃</a>
+        <br>
+        {{ user.username }}님 로그인 중..
+        
+        <!-- sns 로그인이 되어 있지 않으면 ..-->
+    {% else %}
+        <a href="{% provider_login_url 'google' %}"
+        class="gtn btn-google btn-user btn-block">
+        구글 계정으로 로그인하기
+        </a>
+    {% endif %}
+</body>
+</html>

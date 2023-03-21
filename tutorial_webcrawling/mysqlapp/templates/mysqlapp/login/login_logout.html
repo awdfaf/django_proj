@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>::: 화면 로그인 페이지</title>
+    <script type="text/javascript">
+        function login(){
+            // mem_id와 mem_pass를 alert
+            fm = document.getElementById("fm")
+            //alert(fm.mem_id.value)
+            //alert(fm.mem_pass.value)
+            fm.action = "/mysql/login/";
+            fm.submit();
+        }
+
+        function logout(){
+            location.href = "/mysql/logout/"
+        }
+    </script>
+</head>
+<body>
+    {% if chkID == "login" %}
+        <p>회원 로그인하기</p>                 
+        <hr/>
+        <form id="fm" name="fm" method="post">
+            {% csrf_token %}
+            아이디 : <input type="text" name="mem_id">
+            <br/>
+            패스워드 : <input type="text" name="mem_pass">
+            <hr/>
+            <input type="button" onclick="login();" value="로그인">
+        </form>
+    {% else %}
+        <p>회원 로그아웃하기</p>
+        <hr/>
+        {{ sMem_name }}({{ sMem_id }})님 환영합니다.
+        <hr/>
+        <input type="button" onclick="logout();" value="로그아웃">
+    {% endif %}
+</body>
+</html>

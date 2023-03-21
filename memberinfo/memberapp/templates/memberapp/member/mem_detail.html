@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--제목-->
+        <title>회원 상세 조회</title>
+        <script>
+            // 목록가기
+            function goBack() {
+                //alert("back");                       
+                location.href="/member/list" // 경로 지정
+            }
+            // 수정하기
+            function goUpdate() {
+                // alert("update");
+                fm = document.getElementById("fm");
+                fm.action = "/member/update/";
+                fm.submit();
+            }
+            // 삭제하기
+            function goDelete() {
+                // alert("delete");
+                //fm = document.getElementById("fm");
+                //fm.action = "/mysql/cart_delete/";
+                //fm.submit();
+            }
+        </script>
+    </head>
+    <body>
+        <form name="fm" id="fm" method="post" action="#">
+            <input type="hidden" name="mem_id" value="{{ mem_detail.mem_id }}" >
+            <input type="hidden" name="mem_pass" value="{{ mem_detail.mem_pass }}" >
+            <input type="hidden" name="mem_name" value="{{ mem_detail.mem_name }}" >
+            <input type="hidden" name="mem_bir" value="{{ mem_detail.mem_bir }}" >
+            <input type="hidden" name="mem_add1" value="{{ mem_detail.mem_add1 }}" >
+            <input type="hidden" name="mem_add2" value="{{ mem_detail.mem_add2 }}" >
+            <input type="hidden" name="mem_hp" value="{{ mem_detail.mem_hp }}" >
+            {% csrf_token %}
+        </form>
+        <h1>
+            회원 상세 조회
+        </h1>
+        <table border="1">
+            
+            <tr>
+                <th align="center">회원 아이디</th>
+                <th align="center">회원 pass</th>
+                <th align="center">회원 이름</th>
+                <th align="center">회원 생일</th>
+                <th align="center">회원 주소1</th>
+                <th align="center">회원 주소2</th>
+                <th align="center">회원 전화번호</th>
+            </tr>
+            <tr>
+                <td align="center">{{ mem_detail.mem_id }}</td>
+                <td align="center">{{ mem_detail.mem_pass }}</td>
+                <td align="center">{{ mem_detail.mem_name }}</td>
+                <td align="center">{{ mem_detail.mem_bir }}</td>
+                <td align="center">{{ mem_detail.mem_add1 }}</td>
+                <td align="center">{{ mem_detail.mem_add2 }}</td>
+                <td align="center">{{ mem_detail.mem_hp }}</td>
+            </tr>
+        </table>
+        <!--인풋 태그 이용-->
+        <input type="button" onclick="goUpdate();" value="수정">
+        <input type="button" onclick="goDelete();" value="삭제">
+        <input type="button" onclick="goBack();" value="목록가기">
+    </body>
+</html>

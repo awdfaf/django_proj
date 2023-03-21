@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- static에서 관리하는 폴더에 접근하기 위해서는 
+    - 아래 load static을 정의해야한다-->
+{% load static %} <!-- 파이썬 문법 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front Index CSS 페이지</title>
+</head>
+<body>
+    <!-- <p></p> : 문단 -->
+    <p>Front Index CSS</p>
+    <!-- 네비게이션(메뉴 카테고리) : 의미없는 태크 -->
+    <!--css 적용하기-->
+    
+    <!--메뉴규성을 하나의 파일에서 관리하기 / 파이썬 프로그램-->
+    {% include 'frontapp/include/nav.html' %}
+
+    <!-- 라인 그리기 -->
+    <hr/>
+    <!-- <br> : 줄바꿈 태크(태그닫기 없음)-->
+    <br/>
+    <!-- 제목 태그 -->
+    <h1>가장 큰 제목</h1>
+    <h2>두 번째로 큰 제목</h2>
+    <h3>세 번쨰로 큰 제목</h3>
+    <h4>네 번째로 큰 제목</h4>
+    <h5>가장 작은 제목</h5>
+    <p>문단을 나눌 때 p태그 사용</p>
+    <p>문단을 나눌 때 p태그 사용
+        여기도 문단...
+        문단을 나눌 때 p태그 사용
+        여기도 문단...
+        문단을 나눌 때 p태그 사용
+        여기도 문단...
+    </p>
+    <!-- 링크 태그 -->
+    <a href="http://www.google.com">Go google..</a>
+    | <a href="/front/sample/">Go sample..</a>
+    <br/>
+    <!-- 이미지 넣기 -->
+    <img src="https://w.namu.la/s/126588db9d20e18ebae80ad547e784ffc25c2e2a62d41e2e0d6bc0ec45bf77c4e0dc3f757cd2ea5e1690ace9288f424edb6f0c5bfd5da345f4b4c254e6d12960bd428c9a5a960341a88bf0abfeb1dedefbb7de5f15e383a7188c8248ce14b2b66ad1d831f9d235e9209b5f2a2de7b6bc"
+        width="300" height="300"/>
+    <hr/>
+    <img src="{% static 'frontapp/images/dog.jpg' %}"
+        width="300" height="300"/>
+</body>
+</html>

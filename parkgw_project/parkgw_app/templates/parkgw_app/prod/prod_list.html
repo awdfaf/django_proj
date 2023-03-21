@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--제목-->
+        <title>제품 전체 조회</title>
+        <script type="text/javascript">
+            function goDetail(prod_id) {
+                // alert(prod_id)
+                url = "/prod/detail/?"
+                url = url + "prod_id=" + prod_id;
+                location.href = url;
+            }
+            function goInsert(){
+                location.href = "/prod/insert/"
+            }
+        </script>
+    </head>
+    <body>
+        {% load static %}
+        {% load socialaccount %}
+        {% providers_media_js %}
+
+        {% if user.is_authenticated %}
+            <a href="/accounts/logout/">로그아웃</a>
+            <br>
+            {{ user.username }}님 로그인 중..
+            <h1>
+                제품 전체 조회
+            </h1>
+            <!--입력 이벤트 버튼 : goInsert()-->
+            <input type="button" onclick="goInsert();" value="제품 정보 입력">
+            <hr/>
+            <table border="1">
+                <tr>
+                    <th align="center">prod_id</th>
+                    <th align="center">prod_name</th>
+                    <th align="center">prod_lgu</th>
+                    <th align="center">prod_buyer</th>
+                    <th align="center">prod_sale</th>
+                </tr>
+                {% for prod in prod_list %}
+                <tr>
+                    <td align="center">
+                        <a href="javascript:goDetail('{{ prod.prod_id }}');">
+                            {{ prod.prod_id }}
+                        </a>
+                    </td>
+                    <td align="center">{{ prod.prod_name }}</td>
+                    <td align="center">{{ prod.prod_lgu }}</td>
+                    <td align="center">{{ prod.prod_buyer }}</td>
+                    <td align="center">{{ prod.prod_sale }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h1>SNS Login :: Google</h1>
+            <a href="{% provider_login_url 'google' %}"
+            class="gtn btn-google btn-user btn-block">
+            구글 계정으로 로그인하기
+            </a>
+        {% endif %}
+    </body>
+</html>
+
+
+    
+
+    
+
+    

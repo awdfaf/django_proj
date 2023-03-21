@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <script tpye="text/javascript">
+        function doSumething() {
+    
+            fm = document.getElementById("fm");
+            fm.action ='/rnn/load/'
+            fm.submit();
+        }
+        
+    </script>
+    <title>::: 모델 확인하기:::</title>
+</head>
+<body>
+    <table border=1>
+        <tr>
+            <th>current_word</th>
+            <th>n</th>
+        </tr>
+        <tr>
+            
+            <form name="fm" id="fm" method="post" action="#">
+                {% csrf_token %}
+                <td><input type="text" id="current_word" name="current_word" value=""></td>
+                <td><input type="text" id="n" name="n" value=""></td>
+            </form>
+        </tr>
+    </table>
+    <input type="button" onclick="doSumething()"  value= "check">
+    <p>
+        <span>{{sentence}}</span>
+    </p>
+</body>
+</html>

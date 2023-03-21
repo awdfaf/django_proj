@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>::: 주문정보-전체조회 :::</title>
+        <script type="text/javascript">
+            // 주문 상세정보 페이지로 이동하기
+            function goView(cart_no, cart_prod) {
+                //alert(cart_no);
+                //alert(cart_prod);
+                // get방식으로 넘기기(form 태그 사용할 경우 post전송사용)
+                url = "/mysql/cart_view/?"
+                url = url + "cart_no=" + cart_no + "&cart_prod=" + cart_prod;
+                //alert(url);
+                location.href = url;
+            }
+            // 글쓰기 처리 함수
+            function goInsert(){
+                // alert("goInsert")
+                location.href = "/mysql/cart_insert_form/"
+            }
+        </script>
+    </head>
+    <body>
+        <h1>주문정보 전체정보</h1>
+        <hr/>
+        <!--입력 이벤트 버튼 : goInsert()-->
+        <input type="button" onclick="goInsert();" value="글쓰기">
+        <table border="1">
+            <tr>
+                <th align="center">주문번호</th>
+                <th align="center">회원아이디</th>
+                <th align="center">상품코드</th>
+                <th align="center">주문수량</th>
+            </tr>
+            {% for cart in cart_list %}
+            <tr>
+                <td align="center">
+                    <a href="javascript:goView('{{ cart.cart_no }}','{{ cart.cart_prod }}');">
+                        {{ cart.cart_no }}
+                    </a>
+                </td>
+                <td align="center">{{ cart.cart_member }}</td>
+                <td align="center">{{ cart.cart_prod }}</td>
+                <td align="center">{{ cart.cart_qty }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

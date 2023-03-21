@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--제목-->
+        <title>회원 전체 조회</title>
+        <script type="text/javascript">
+            function goDetail(mem_id) {
+                // alert(mem_id)
+                url = "/member/detail/?"
+                url = url + "mem_id=" + mem_id;
+                location.href = url;
+            }
+            function goInsert(){
+                location.href = "/member/insert/"
+            }
+        </script>
+    </head>
+    <body>
+        <h1>
+            회원 전체 조회
+        </h1>
+        <!--입력 이벤트 버튼 : goInsert()-->
+        <input type="button" onclick="goInsert();" value="회원 정보 입력">
+        <hr/>
+        <table border="1">
+            <tr>
+                <th align="center">회원 아이디</th>
+                <th align="center">회원 pass</th>
+                <th align="center">회원 이름</th>
+                <th align="center">회원 생일</th>
+                <th align="center">회원 주소1</th>
+                <th align="center">회원 주소2</th>
+                <th align="center">회원 전화번호</th>
+            </tr>
+            {% for member in member_list %}
+            <tr>
+                <td align="center">
+                    <a href="javascript:goDetail('{{ member.mem_id }}');">
+                        {{ member.mem_id }}
+                    </a>
+                </td>
+                <td align="center">{{ member.mem_pass }}</td>
+                <td align="center">{{ member.mem_name }}</td>
+                <td align="center">{{ member.mem_bir }}</td>
+                <td align="center">{{ member.mem_add1 }}</td>
+                <td align="center">{{ member.mem_add2 }}</td>
+                <td align="center">{{ member.mem_hp }}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

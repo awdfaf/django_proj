@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>::: 주문정보-글쓰기 :::</title>
+        <script>
+            // 취소
+            function goBack() {
+                //alert("back");
+                history.go(-1); // 뒤로가기
+                // history.back(); // 뒤로가기
+                // location.href="/mysql/cart_list" // 경로 지정
+            }
+            // 저장하기 버튼 처리
+            function goInsert() {
+                // alert("insert");
+                fm = document.getElementById("fm");
+                // alert(fm.cart_no.value);
+                fm.action = "/mysql/cart_insert/";
+                fm.submit();
+            }
+            
+        </script>
+    </head>
+    <body>
+        <form name="fm" id="fm" method="post" action="#">
+            <!--토큰 필수-->
+            {% csrf_token %}
+            <h1>주문정보 글쓰기</h1>
+            <table border="1">
+                <tr>
+                    <th align="center">주문번호</th>
+                    <th align="center">회원아이디</th>
+                    <th align="center">상품코드</th>
+                    <th align="center">주문수량</th>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input name="cart_no" type="text" value="202301270001" />
+                    </td>
+                    <td align="center">
+                        <input name="cart_member" type="text" value="a001" />
+                    </td>
+                    <td align="center">
+                        <input name="cart_prod" type="text" value="P201000019" />
+                    </td> 
+                    <td align="center">
+                        <input name="cart_qty" type="text" value="12" />
+                    </td>
+                </tr>
+            </table>
+            <!--수정/삭제/목록가기 이벤트를 위한 버튼-->
+            <!--인풋 태그 이용-->
+            <input type="button" onclick="goInsert();" value="저장하기">
+            <input type="button" onclick="goBack();" value="취소">
+        </form>
+    </body>
+</html>

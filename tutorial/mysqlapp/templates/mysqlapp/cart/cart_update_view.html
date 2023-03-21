@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>::: 주문정보-수정하기 :::</title>
+        <script>
+            // 목록가기
+            function goBack() {
+                //alert("back");
+                history.go(-1); // 뒤로가기
+                // history.back(); // 뒤로가기
+                // location.href="/mysql/cart_list" // 경로 지정
+            }
+            // 수정하기
+            function goUpdate() {
+                // alert("update");
+                fm = document.getElementById("fm");
+                //alert(fm.cart_no.value);
+                //alert(fm.cart_prod.value);
+                fm.action = "/mysql/cart_update/";
+                fm.submit();
+            }
+            
+        </script>
+    </head>
+    <body>
+        <form name="fm" id="fm" method="post" action="#">
+            <input type="hidden" name="cart_no" value="{{ cart_view.cart_no }}" >
+            <input type="hidden" name="cart_prod" value="{{ cart_view.cart_prod }}" >
+                {% csrf_token %}
+            <h1>주문정보 수정하기</h1>
+            <table border="1">
+                <tr>
+                    <th align="center">주문번호</th>
+                    <th align="center">회원아이디</th>
+                    <th align="center">상품코드</th>
+                    <th align="center">주문수량</th>
+                </tr>
+                <tr>
+                    <td align="center">{{ cart_view.cart_no }}</td>
+                    <td align="center">{{ cart_view.cart_member }}</td>
+                    <td align="center">{{ cart_view.cart_prod }}</td> 
+                    <td align="center">
+                        <input type="text" name="cart_qty" value="{{ cart_view.cart_qty }}">
+                    </td>
+                </tr>
+            </table>
+            <!--인풋 태그 이용-->
+            <input type="button" onclick="goUpdate();" value="수정">
+            <input type="button" onclick="goBack();" value="목록가기">
+        </form>
+    </body>
+</html>

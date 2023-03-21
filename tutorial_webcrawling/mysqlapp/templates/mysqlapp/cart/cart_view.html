@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>::: 주문정보-상세조회 :::</title>
+        <script>
+            // 목록가기
+            function goBack() {
+                //alert("back");
+                //history.go(-1); // 뒤로가기
+                // history.back(); // 뒤로가기
+                location.href="/mysql/cart_list" // 경로 지정
+            }
+            // 수정하기
+            function goUpdate() {
+                // alert("update");
+                fm = document.getElementById("fm");
+                //alert(fm.cart_no.value);
+                //alert(fm.cart_prod.value);
+                fm.action = "/mysql/cart_update_view/";
+                fm.submit();
+            }
+            // 삭제하기
+            function goDelete() {
+                // alert("delete");
+                fm = document.getElementById("fm");
+                fm.action = "/mysql/cart_delete/";
+                fm.submit();
+            }
+        </script>
+    </head>
+    <body>
+        <form name="fm" id="fm" method="post" action="#">
+            <input type="hidden" name="cart_no" value="{{ cart_view.cart_no }}" >
+            <input type="hidden" name="cart_prod" value="{{ cart_view.cart_prod }}" >
+            {% csrf_token %}
+        </form>
+        <h1>주문정보 상세조회</h1>
+        <table border="1">
+            <tr>
+                <th align="center">주문번호</th>
+                <th align="center">회원아이디</th>
+                <th align="center">상품코드</th>
+                <th align="center">주문수량</th>
+            </tr>
+            <tr>
+                <td align="center">{{ cart_view.cart_no }}</td>
+                <td align="center">{{ cart_view.cart_member }}</td>
+                <td align="center">{{ cart_view.cart_prod }}</td> 
+                <td align="center">{{ cart_view.cart_qty }}</td>
+            </tr>
+        </table>
+        <!--수정/삭제/목록가기 이벤트를 위한 버튼-->
+        <!--버튼 태그 이용-->
+        <!-- <button onclick="goUpdate();">수정</button>
+        <button onclick="goDelete();">삭제</button>
+        <button onclick="goBack();">목록가기</button> -->
+
+        <!--인풋 태그 이용-->
+        <input type="button" onclick="goUpdate();" value="수정">
+        <input type="button" onclick="goDelete();" value="삭제">
+        <input type="button" onclick="goBack();" value="목록가기">
+    </body>
+</html>

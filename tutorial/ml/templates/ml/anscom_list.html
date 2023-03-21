@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>::: 엔스콤 데이터 조회 :::</title>
+</head>
+<body>
+    <h3>앤스콤 데이터 시각화</h3>
+    <img src="{% static '/ml/images/anscombe_data.png' %}">
+    <hr/>
+    <h3>앤스콤 데이터</h3>
+    <hr/>
+    <table border=1>
+        <tr>
+            <!--컬럼 추가하기-->
+            {% for col in columns %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+        <!--데이터 출력하기-->
+        {% for dt in df_list %}
+        <tr>
+            <td>{{ dt.dataset }}</td>
+            <td>{{ dt.x }}</td>
+            <td>{{ dt.y }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

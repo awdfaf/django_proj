@@ -1,0 +1,16 @@
+<h1>웹 크롤링</h1>
+<hr/>
+<table border="1">
+    <tr>
+        <th width="20%" align="center">순위</th>
+        <th width="50%" align="center">곡제목</th>
+        <th width="30%" align="center">가수(그룹)</th>
+    </tr>
+    {% for list in melon_list %}
+    <tr>
+        <td align="center">{{ list.no }}</td>
+        <td align="center">{{ list.title }}</td>
+        <td align="center">{{ list.singer }}</td>
+    </tr>
+    {% endfor %}
+</table>

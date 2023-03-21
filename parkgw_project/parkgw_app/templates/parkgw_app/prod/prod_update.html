@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--제목-->
+        <title>제품 정보 수정</title>
+        <script>
+            // 목록가기
+            function goBack() {
+                //alert("back");                       
+                location.href="/prod/list" // 경로 지정
+            }
+            // 수정하기
+            function goUpdate() {
+                // alert("update");
+                fm = document.getElementById("fm");
+                fm.action = "/prod/update_save/";
+                fm.submit();
+            }
+            
+        </script>
+    </head>
+    <body>
+        <form name="fm" id="fm" method="post" action="#">
+            <input type="hidden" name="prod_id" value="{{ prod_update.prod_id }}" >
+            {% csrf_token %}
+        
+        <h1>
+            제품 정보 수정
+        </h1>
+        <table border="1">
+            
+            <tr>
+                <th align="center">prod_id</th>
+                <th align="center">prod_name</th>
+                <th align="center">prod_lgu</th>
+                <th align="center">prod_buyer</th>
+                <th align="center">prod_sale</th>
+            </tr>
+            <tr>
+                <td align="center">{{ prod_update.prod_id }}</td>
+                <td align="center">{{ prod_update.prod_name }}</td>
+                <td align="center">{{ prod_update.prod_lgu }}</td>
+                <td align="center">{{ prod_update.prod_sale }}</td>
+                <td align="center">
+                    <input type="text" name="prod_sale" value="{{prod_update.prod_sale }}">
+                </td>
+            </tr>
+        </table>
+        <!--인풋 태그 이용-->
+        <input type="button" onclick="goUpdate();" value="수정">
+        <input type="button" onclick="goBack();" value="목록가기">
+    </form>
+    </body>
+</html>

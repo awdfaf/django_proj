@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--제목-->
+        <title>회원 정보 등록</title>
+        <script>
+            // 목록가기
+            function goBack() {
+                //alert("back");                       
+                location.href="/member/list" // 경로 지정
+            }
+            function goInsert() {
+                fm = document.getElementById("fm");
+                fm.action = "/member/insert_save/";
+                fm.submit();
+            }
+        </script>
+    </head>
+    <body>
+        <form name="fm" id="fm" method="post" action="#">
+            <!--토큰 필수-->
+            {% csrf_token %}
+            <h1>
+                회원 정보 등록
+            </h1>
+            <table border="1">
+                <tr>
+                    <th align="center">회원 아이디</th>
+                    <th align="center">회원 pass</th>
+                    <th align="center">회원 이름</th>
+                    <th align="center">회원 생일</th>
+                    <th align="center">회원 주소1</th>
+                    <th align="center">회원 주소2</th>
+                    <th align="center">회원 전화번호</th>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="text" name="mem_id" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="mem_pass" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="mem_name" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="mem_bir" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="mem_add1" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="mem_add2" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="mem_hp" value="">
+                    </td>
+                </tr>
+            </table>
+            <input type="button" onclick="goInsert();" value="저장하기">
+            <input type="button" onclick="goBack();" value="취소">
+        </form>
+    </body>
+</html>

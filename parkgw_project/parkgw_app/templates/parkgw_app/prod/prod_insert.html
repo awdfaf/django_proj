@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--제목-->
+        <title>제품 정보 등록</title>
+        <script>
+            // 목록가기
+            function goBack() {
+                //alert("back");                       
+                location.href="/prod/list" // 경로 지정
+            }
+            function goInsert() {
+                fm = document.getElementById("fm");
+                fm.action = "/prod/insert_save/";
+                fm.submit();
+            }
+        </script>
+    </head>
+    <body>
+        <form name="fm" id="fm" method="post" action="#">
+            <!--토큰 필수-->
+            {% csrf_token %}
+            <h1>
+                제품 정보 등록
+            </h1>
+            <table border="1">
+                <tr>
+                    <th align="center">prod_id</th>
+                    <th align="center">prod_name</th>
+                    <th align="center">prod_lgu</th>
+                    <th align="center">prod_buyer</th>
+                    <th align="center">prod_sale</th>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="text" name="prod_id" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="prod_name" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="prod_lgu" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="prod_buyer" value="">
+                    </td>
+                    <td align="center">
+                        <input type="text" name="prod_sale" value="">
+                    </td>
+                </tr>
+            </table>
+            <input type="button" onclick="goInsert();" value="저장하기">
+            <input type="button" onclick="goBack();" value="취소">
+        </form>
+    </body>
+</html>

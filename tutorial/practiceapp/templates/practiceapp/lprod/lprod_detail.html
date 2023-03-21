@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--제목-->
+        <title>상세 조회</title>
+    </head>
+    <body>
+        <!--h1 : 큰 글자 ,  align="center" : 가운데로-->
+        <h1 align="center">상세 조회</h1>
+        <!--선 긋기-->
+        <hr/>
+        <table border="1">
+            <tr>
+                <th align="center">제품 아이디</th>
+                <th align="center">제품 코드</th>
+                <th align="center">제품 이름</th>
+            </tr>
+            <tr>
+                <td align="center">{{ lprod.lprod_id }}</td>
+                <td align="center">{{ lprod.lprod_gu }}</td>
+                <td align="center">{{ lprod.lprod_nm }}</td>
+            </tr>
+        </table>
+    </body>
+</html>

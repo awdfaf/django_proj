@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--제목-->
+        <title>정보 조회</title>
+        <script type="text/javascript">
+            function goDetail(lprod_gu, lprod_id) {
+                // alert(lprod_gu)
+                url = "/practice/detail/?"
+                url = url + "lprod_gu=" + lprod_gu;
+                //alert(url);
+                location.href = url;
+            }
+        </script>
+    </head>
+    <body>
+        <!--h1 : 큰 글자 ,  align="center" : 가운데로-->
+        <h1 align="center">정보 조회</h1>
+        <!--선 긋기-->
+        <hr/>
+        <table border="1">
+            <tr>
+                <th align="center">제품 아이디</th>
+                <th align="center">제품 코드</th>
+                <th align="center">제품 이름</th>
+            </tr>
+            {% for lprod in lprod_list %}
+            <tr>
+                <td align="center">
+                    <a href="javascript:goDetail('{{ lprod.lprod_gu }}');">
+                        {{ lprod.lprod_id }}
+                    </a>
+                </td>
+                <td align="center">{{ lprod.lprod_gu }}</td>
+                <td align="center">{{ lprod.lprod_nm }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
